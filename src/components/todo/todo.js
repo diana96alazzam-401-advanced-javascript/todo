@@ -46,7 +46,7 @@ function ToDo(props) {
 
   if (todoList.list) {
     return (
-      <>
+      <div style={{ textAlign: 'center' }}>
         <header>
           <Navbar bg="primary" variant="dark" >
             <Nav className="mr-auto">
@@ -55,17 +55,16 @@ function ToDo(props) {
           </Navbar>
         </header>
 
-
-        <section className="todo" >
+        <section className="todo" style={{ display: 'inline-block', marginTop:'2vh', textAlign: 'left' }} >
           <CardGroup >
 
-            <div style={{ width: '65vw' }} >
-              <Card.Title style={{ width: '65vw', marginBottom: '0vh'}}>
+            <div style={{ width: '80vw' }} >
+              <Card.Title style={{ width: '80vw', marginBottom: '0vh'}}>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{color:'white'}}>
                   There are {todoList.list.filter(item => !item.complete).length} Items To Complete
                 </Navbar>
               </Card.Title>
-              <Card style={{ width: '65vw', flexDirection: 'row', marginTop: '0vh', borderRadius: '0rem' }} >
+              <Card style={{ width: '80vw', flexDirection: 'row', marginTop: '0vh', borderRadius: '0rem' }} >
 
                 <Card.Body>
                   <TodoForm handleSubmit={addItem} />
@@ -85,7 +84,7 @@ function ToDo(props) {
 
         </section>
 
-      </>
+      </div>
     );
 
   } else {
