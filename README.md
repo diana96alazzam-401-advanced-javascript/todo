@@ -22,5 +22,5 @@
 #### UML
 
 // not yet
-![UML](./assets/todo-uml.png)
+![UML](./assets/lab31-uml.png)
 
