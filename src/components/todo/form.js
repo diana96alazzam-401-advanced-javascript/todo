@@ -5,18 +5,18 @@ import Button from 'react-bootstrap/Button';
 
 function TodoForm(props) {
 
-  const [todoItem, setTodoItem] = useState({ item: {} });
+  const [todoItem, setTodoItem] = useState({ text: {} });
 
   const handleInputChange = e => {
-    setTodoItem({ item: { ...todoItem.item, [e.target.name]: e.target.value } });
+    setTodoItem({ text: { ...todoItem.text, [e.target.name]: e.target.value } });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     e.target.reset();
-    props.handleSubmit(todoItem.item);
-    const item = {};
-    setTodoItem({ item });
+    props.handleSubmit(todoItem.text);
+    const text = {};
+    setTodoItem({ text });
   };
 
   return (
