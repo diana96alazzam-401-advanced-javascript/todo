@@ -73,6 +73,19 @@ const ToDo = () => {
       })
       .catch(console.error);
   };
+  const _deleteTodoItems = () => {
+    let config = {
+      method: 'delete',
+      url: todoAPI,
+      headers: { 'Content-Type': 'application/json' },
+    };
+    axios.request(config)
+      .then(data => data.data)
+      .then(data => {
+        setList(data);
+      })
+      .catch(console.error);
+  };
 
   useEffect(_getTodoItems, []);
 
