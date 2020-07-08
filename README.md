@@ -7,7 +7,7 @@
 - [submission PR](https://github.com/diana96alazzam-401-advanced-javascript/todo/compare/hooks?expand=2)
 <!-- - [ci/cd](http://xyz.com) (GitHub Actions) 
 - [back-end server url](http://xyz.com) (when applicable)  -->
-- [front-end application-netlify](https://jovial-boyd-5d8f9c.netlify.app/) 
+- [front-end application-netlify](https://festive-shockley-c7dcae.netlify.app/) 
 
 
 ### Setup
