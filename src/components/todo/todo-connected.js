@@ -38,8 +38,6 @@ const ToDo = () => {
 
     let item = list.filter(i => i._id === id)[0] || {};
 
-
-
     if (item._id) {
 
       item.complete = !item.complete;
@@ -73,22 +71,28 @@ const ToDo = () => {
       })
       .catch(console.error);
   };
-  const _deleteTodoItems = () => {
-    let config = {
-      method: 'delete',
-      url: todoAPI,
-      headers: { 'Content-Type': 'application/json' },
-    };
-    axios.request(config)
-      .then(data => data.data)
-      .then(data => {
-        setList(data);
-      })
-      .catch(console.error);
+  const _deleteTodoItems = id => {
+
+    let item = list.filter(i => i._id === id)[0] || {};
+   
+    if (item._id) {
+      let url = `${todoAPI}/${id}`;
+      let config = {
+        method: 'delete',
+        url: todoAPI,
+        headers: { 'Content-Type': 'application/json' },
+      };
+      axios.request(url, config)
+        .then(data => data.data)
+        .then(deletedItem => {
+          setList(list.filter(listItem => listItem._id !== deletedItem._id));
+
+        })
+        .catch(console.error);
+    }
   };
 
   useEffect(_getTodoItems, []);
-
   return (
     <div style={{ textAlign: 'center' }}>
       <header>
@@ -118,6 +122,7 @@ const ToDo = () => {
                 <TodoList
                   list={list}
                   handleComplete={_toggleComplete}
+                  handleDelete ={_deleteTodoItems}
                 />
 
               </Card.Body>
