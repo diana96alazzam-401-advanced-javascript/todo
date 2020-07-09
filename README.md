@@ -27,6 +27,6 @@
 #### Notes
 
 - Lab 32 : 
-  * When posting two times in raw (without refreshing); the second one will give 505 error.
+  * the form doesn't reset after submit.
 
 
