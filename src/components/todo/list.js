@@ -3,9 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-
-
-
 function TodoList(props) {
   if (props) {
     if (props.list) {
@@ -46,6 +43,8 @@ function TodoList(props) {
           ))}
         </div>
       );
+    } else {
+      return null;
     }
   } else {
     return null;
