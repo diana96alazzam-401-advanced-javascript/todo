@@ -8,14 +8,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
-// import { SettingsContext } from '../context/settings.js';
+import  {SettingsContext}  from '../../context/settings.js';
 
 
 const todoAPI = 'https://todo-app-server-lab32.herokuapp.com/api/v1/todo';
 
 const ToDo = () => {
 
-  // const settingsContext = useContext(SettingsContext);
+  const settingsContext = useContext(SettingsContext);
 
   const ajaxHook = useAjax();
 
@@ -53,6 +53,11 @@ const ToDo = () => {
   };
 
   useEffect(_getTodoItems, []);
+  // get the current items 
+  let idxOfLastItem = settingsContext.currentPage * settingsContext.itemPerpage;
+  let idxOfFirstItem = idxOfLastItem - settingsContext.itemPerpage;
+  let currentItems = ajaxHook.list.slice(idxOfFirstItem, idxOfLastItem);
+  
   if(ajaxHook.list){
     return (
       <div style={{ textAlign: 'center' }}>
@@ -81,7 +86,7 @@ const ToDo = () => {
                 <Card.Body>
   
                   <TodoList
-                    list={ajaxHook.list}
+                    list={currentItems}
                     handleComplete={_toggleComplete}
                     handleDelete ={_deleteTodoItems}
                   />

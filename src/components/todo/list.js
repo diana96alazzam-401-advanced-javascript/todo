@@ -9,12 +9,14 @@ function TodoList(props) {
   const settingsContext = useContext(SettingsContext);
 
   if (props) {
+    let onePage = props.list.slice(0, settingsContext.numOfDisplayedItems);
+    console.log(onePage);
     if (props.list) {
       let btnText = (settingsContext.completedVisibility)?'Hide':'Show';
       return (
         <div>
           <Button onClick={settingsContext.changeCompletedVisibility}>{`${btnText} completed`}</Button>
-          {props.list.map(item => (
+          {onePage.map(item => (
             <Modal.Dialog
               variant={(item.complete) ? 'danger' : 'success'}
               className={`complete-${item.complete.toString()} ${settingsContext.completedVisibility}Show-${item.complete.toString()}Complete`}
