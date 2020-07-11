@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import PaginationFunction from './pagination';
 
-
-
+import { SettingsContext } from '../../context/settings.js';
+import './todo.scss';
 
 function TodoList(props) {
+  const settingsContext = useContext(SettingsContext);
+
   if (props) {
+    console.log('list', props.list.length);
+    let onePage = props.list.slice(0, settingsContext.numOfDisplayedItems);
+    console.log(onePage);
     if (props.list) {
+      let btnText = (settingsContext.completedVisibility) ? 'Hide' : 'Show';
       return (
         <div>
-          {props.list.map(item => (
+          <Button onClick={settingsContext.changeCompletedVisibility}>{`${btnText} completed`}</Button>
+          <label>Items per page <input onChange={(e) => settingsContext.changeItemPerpage(e.target.value)} type='number' /></label>
+          {onePage.map(item => (
             <Modal.Dialog
               variant={(item.complete) ? 'danger' : 'success'}
-              className={`complete-${item.complete.toString()}`}
+              className={`complete-${item.complete.toString()} ${settingsContext.completedVisibility}Show-${item.complete.toString()}Complete`}
               key={item._id}
             >
               <Modal.Header>
@@ -29,10 +38,10 @@ function TodoList(props) {
                 </Button>
                 <p>{item.assignee}</p>
                 <div
-                  style={{ cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                   onClick={() => props.handleDelete(item._id)}
                 >
-                  <img alt='deleteItem' style={{ width: '1vw', height: '1vw'}} src='https://i.ya-webdesign.com/images/the-letter-a-png-2.png'/>
+                  <img alt='deleteItem' style={{ width: '1vw', height: '1vw' }} src='https://i.ya-webdesign.com/images/the-letter-a-png-2.png' />
                 </div>
               </Modal.Header>
               <Modal.Body>
@@ -44,8 +53,16 @@ function TodoList(props) {
 
             </Modal.Dialog>
           ))}
+          <PaginationFunction
+            paginateHandler={settingsContext.setCurrentPage}
+            itemsPerPage={settingsContext.itemPerpage}
+            totalItems={props.fullList.length}
+          />
+
         </div>
       );
+    } else {
+      return null;
     }
   } else {
     return null;
