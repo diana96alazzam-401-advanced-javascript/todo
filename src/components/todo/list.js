@@ -2,6 +2,8 @@ import React, {useContext} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import PaginationFunction from './pagination';
+
 import  {SettingsContext}  from '../../context/settings.js';
 import './todo.scss';
 
@@ -9,6 +11,7 @@ function TodoList(props) {
   const settingsContext = useContext(SettingsContext);
 
   if (props) {
+    console.log('list', props.list.length);
     let onePage = props.list.slice(0, settingsContext.numOfDisplayedItems);
     console.log(onePage);
     if (props.list) {
@@ -50,6 +53,8 @@ function TodoList(props) {
 
             </Modal.Dialog>
           ))}
+          <PaginationFunction itemsPerPage={settingsContext.itemPerpage} totalItems={props.fullList.length} />
+
         </div>
       );
     } else {

@@ -87,6 +87,7 @@ const ToDo = () => {
   
                   <TodoList
                     list={currentItems}
+                    fullList={ajaxHook.list}
                     handleComplete={_toggleComplete}
                     handleDelete ={_deleteTodoItems}
                   />
