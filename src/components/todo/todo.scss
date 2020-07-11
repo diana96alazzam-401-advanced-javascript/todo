@@ -92,3 +92,18 @@ body, html {
     }
 
 }
+
+// if not complete it should be always shown 
+.trueShow-falseComplete {
+    display: block;
+}
+.falseShow-falseComplete {
+    display: block;
+}
+// if complete it can be toggled 
+.falseShow-trueComplete {
+    display: none;
+}
+.trueShow-trueComplete {
+    display: block;
+}

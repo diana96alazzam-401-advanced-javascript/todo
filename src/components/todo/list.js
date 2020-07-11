@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import  {SettingsContext}  from '../../context/settings.js';
+import './todo.scss';
 
 function TodoList(props) {
+  const settingsContext = useContext(SettingsContext);
+
   if (props) {
     if (props.list) {
+      let btnText = (settingsContext.completedVisibility)?'Hide':'Show';
       return (
         <div>
+          <Button onClick={settingsContext.changeCompletedVisibility}>{`${btnText} completed`}</Button>
           {props.list.map(item => (
             <Modal.Dialog
               variant={(item.complete) ? 'danger' : 'success'}
-              className={`complete-${item.complete.toString()}`}
+              className={`complete-${item.complete.toString()} ${settingsContext.completedVisibility}Show-${item.complete.toString()}Complete`}
               key={item._id}
             >
               <Modal.Header>
