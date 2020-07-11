@@ -11,7 +11,7 @@ function PaginationFunction(props) {
   return (
     <Pagination>
       {pageNumbers.map(number => (
-        <Pagination.Item key={number}>
+        <Pagination.Item key={number} onClick={()=>props.paginateHandler(number)}>
           {number}
         </Pagination.Item>
       ))}

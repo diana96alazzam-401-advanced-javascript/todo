@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 import PaginationFunction from './pagination';
 
-import  {SettingsContext}  from '../../context/settings.js';
+import { SettingsContext } from '../../context/settings.js';
 import './todo.scss';
 
 function TodoList(props) {
@@ -15,11 +15,11 @@ function TodoList(props) {
     let onePage = props.list.slice(0, settingsContext.numOfDisplayedItems);
     console.log(onePage);
     if (props.list) {
-      let btnText = (settingsContext.completedVisibility)?'Hide':'Show';
+      let btnText = (settingsContext.completedVisibility) ? 'Hide' : 'Show';
       return (
         <div>
           <Button onClick={settingsContext.changeCompletedVisibility}>{`${btnText} completed`}</Button>
-          <label>Items per page <input onChange={(e)=>settingsContext.changeItemPerpage(e.target.value)} type='number'/></label>
+          <label>Items per page <input onChange={(e) => settingsContext.changeItemPerpage(e.target.value)} type='number' /></label>
           {onePage.map(item => (
             <Modal.Dialog
               variant={(item.complete) ? 'danger' : 'success'}
@@ -38,10 +38,10 @@ function TodoList(props) {
                 </Button>
                 <p>{item.assignee}</p>
                 <div
-                  style={{ cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                   onClick={() => props.handleDelete(item._id)}
                 >
-                  <img alt='deleteItem' style={{ width: '1vw', height: '1vw'}} src='https://i.ya-webdesign.com/images/the-letter-a-png-2.png'/>
+                  <img alt='deleteItem' style={{ width: '1vw', height: '1vw' }} src='https://i.ya-webdesign.com/images/the-letter-a-png-2.png' />
                 </div>
               </Modal.Header>
               <Modal.Body>
@@ -53,7 +53,11 @@ function TodoList(props) {
 
             </Modal.Dialog>
           ))}
-          <PaginationFunction itemsPerPage={settingsContext.itemPerpage} totalItems={props.fullList.length} />
+          <PaginationFunction
+            paginateHandler={settingsContext.setCurrentPage}
+            itemsPerPage={settingsContext.itemPerpage}
+            totalItems={props.fullList.length}
+          />
 
         </div>
       );

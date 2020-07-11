@@ -13,7 +13,7 @@ function SettingsProvider (props) {
     completedVisibility, 
     changeCompletedVisibility: toggleCompVisibility,
     currentPage,
-    setCurrentPage,
+    setCurrentPage: paginateHandler,
     itemPerpage, 
     changeItemPerpage,
     sortField,
@@ -25,6 +25,9 @@ function SettingsProvider (props) {
   }
   function changeItemPerpage(items) {
     setItemPerpage(items);
+  }
+  function paginateHandler(pageNumber) {
+    setCurrentPage(pageNumber);
   }
 
   return (
