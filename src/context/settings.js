@@ -15,13 +15,16 @@ function SettingsProvider (props) {
     currentPage,
     setCurrentPage,
     itemPerpage, 
-    changeItemPerpage: setItemPerpage,
+    changeItemPerpage,
     sortField,
     changeNortField: setSortField,
   };
   function toggleCompVisibility() {
     let inversed = completedVisibility?false:true;
     setCompletedVisibility(inversed);
+  }
+  function changeItemPerpage(items) {
+    setItemPerpage(items);
   }
 
   return (

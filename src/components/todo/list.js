@@ -16,6 +16,7 @@ function TodoList(props) {
       return (
         <div>
           <Button onClick={settingsContext.changeCompletedVisibility}>{`${btnText} completed`}</Button>
+          <label>Items per page <input onChange={(e)=>settingsContext.changeItemPerpage(e.target.value)} type='number'/></label>
           {onePage.map(item => (
             <Modal.Dialog
               variant={(item.complete) ? 'danger' : 'success'}
