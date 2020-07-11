@@ -6,10 +6,10 @@
 
 ### Links and Resources
 
-- [submission PR](https://github.com/diana96alazzam-401-advanced-javascript/todo/pull/4)
+- [submission PR](https://github.com/diana96alazzam-401-advanced-javascript/todo/pull/3)
 <!-- - [ci/cd](http://xyz.com) (GitHub Actions) 
 - [back-end server url](http://xyz.com) (when applicable)  -->
-- [front-end application-netlify](https://wonderful-noether-187f79.netlify.app/) 
+- [front-end application-netlify](https://stoic-dijkstra-96d5f5.netlify.app/) 
 
 
 ### Setup
