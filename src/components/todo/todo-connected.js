@@ -3,6 +3,13 @@ import TodoForm from './form.js';
 import TodoList from './list.js';
 import useAjax from '../../hooks/ajax-hook';
 
+
+import LoginProvider from '../../context/auth.js';
+
+import Auth from '../auth/auth';
+import Login from '../auth/login';
+
+
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
@@ -29,17 +36,6 @@ const ToDo = () => {
     let item = ajaxHook.list.filter(i => i._id === id)[0] || {};
 
     if (item._id) {
-
-
-
-
-
-
-
-
-
-
-      
       item.complete = !item.complete;
 
       let url = `${todoAPI}/${id}`;
@@ -67,6 +63,23 @@ const ToDo = () => {
   let idxOfLastItem = settingsContext.currentPage * settingsContext.itemPerpage;
   let idxOfFirstItem = idxOfLastItem - settingsContext.itemPerpage;
   let currentItems = ajaxHook.list.slice(idxOfFirstItem, idxOfLastItem);
+
+
+  // for login purposes
+  const EditLink = (props) => {
+    return (
+      <Auth capability="update">
+        <span>Edit</span>
+      </Auth>
+    );
+  };
+  const DeleteLink = (props) => {
+    return (
+      <Auth capability="delete">
+        <span>Delete</span>
+      </Auth>
+    );
+  };
   
   if(ajaxHook.list){
     return (
@@ -76,6 +89,13 @@ const ToDo = () => {
             <Nav className="mr-auto">
               <Nav.Link href="/" >Home</Nav.Link>
             </Nav>
+
+            <LoginProvider>
+              <Login />
+              <EditLink />
+              <DeleteLink />
+            </LoginProvider>
+
           </Navbar>
         </header>
   

@@ -6,6 +6,8 @@ import ToDo from './components/todo/todo-connected';
 
 import SettingsProvider from './context/settings.js';
 
+
+
 export default function App() {
   return (
     <SettingsProvider>
