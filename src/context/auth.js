@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import superagent from 'superagent';
 dotenv.config();
 
-const API = process.env.API_SERVER || 'https://todo-app-server-lab32.herokuapp.com/api/v1/todo';
+const API = process.env.API_SERVER || 'https://todo-app-server-lab32.herokuapp.com/api/v1';
 const SECRET = process.env.JWT_SECRET || 'supersecret';
 
 export const LoginContext = React.createContext();
@@ -38,7 +38,7 @@ class LoginProvider extends React.Component {
   };
   login = (username, password) => {
     superagent
-      .post(`${API}/api/v1/signin`)
+      .post(`${API}/signin`)
       .set('authorization', `Basic ${btoa(`${username}:${password}`)}`)
       .then((response) => {
         this.validateToken(response.body.token);
